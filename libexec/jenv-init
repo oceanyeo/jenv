@@ -96,7 +96,9 @@ fish )
   echo "set -e JDK_HOME"
   ;;
 bash | zsh )
-  echo 'export PATH="'${JENV_ROOT}'/shims:${PATH}"'
+  echo 'if [[ ":$PATH:" != *'\':"${JENV_ROOT}"/shims:\''* ]]; then'
+    echo 'export PATH="'${JENV_ROOT}'/shims:${PATH}"'
+  echo 'fi'
   echo "export JENV_SHELL=$shell"
   echo "export JENV_LOADED=1"
   echo "unset JAVA_HOME"
